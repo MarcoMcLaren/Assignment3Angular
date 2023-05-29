@@ -1,1 +1,60 @@
-<p>product-listing works!................................................................</p>
+<div class="container mt-5">
+    <h2 class="text-center">Product List</h2>
+  
+    <div class="row my-3">
+      <div class="col-md-6">
+        <input type="text" class="form-control" [(ngModel)]="filterText" (input)="applyFilter()" placeholder="Filter">
+      </div>
+    </div>
+  
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th (click)="sort('name')">Name</th>
+          <th (click)="sort('price')">Price</th>
+          <th (click)="sort('brand')">Brand</th>
+          <th (click)="sort('productType')">Product Type</th>
+          <th (click)="sort('description')">Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let product of (filteredProducts | slice:((currentPage-1)*itemsPerPage):(currentPage*itemsPerPage))">
+          <td>{{ product.name }}</td>
+          <td>{{ product.price | currency: 'R': 'symbol':'1.2-2' }}</td>
+          <td>{{ product.brandName }}</td>
+          <td>{{ product.productTypeName }}</td>
+          <td>{{ product.description }}</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="pagination">
+        <ul class="pagination">
+          <li class="page-item" [class.disabled]="currentPage === 1">
+            <a class="page-link" href="javascript:void(0)" (click)="onPageChange(currentPage - 1)">
+              Previous
+            </a>
+          </li>
+          <li class="page-item" [class.active]="currentPage === page" *ngFor="let page of getPages()">
+            <a class="page-link" href="javascript:void(0)" (click)="onPageChange(page)">
+              {{ page }}
+            </a>
+          </li>
+          <li class="page-item" [class.disabled]="currentPage === getLastPage()">
+            <a class="page-link" href="javascript:void(0)" (click)="onPageChange(currentPage + 1)">
+              Next
+            </a>
+          </li>
+        </ul>
+    
+        <div class="items-per-page">
+            <label>Show:</label>
+            <select [(ngModel)]="itemsPerPage" (change)="setItemsPerPage()">
+              <option value="3">3</option>
+              <option value="5">5</option>
+              <option value="10">10</option>
+            </select>
+          </div>
+      </div>
+    </div>
+

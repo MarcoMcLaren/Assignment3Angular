@@ -48,4 +48,17 @@ export class AuthService {
     this.router.navigate(['/login']);
   }
 
+  register(user: {username: string, password: string}): Observable<any> {
+    return this.http.post<any>('https://localhost:7064/Account/register', user)
+      .pipe(
+        tap(response => {
+          // Handle successful registration
+          console.log('User registered successfully: ', response);
+  
+          // Redirect to login page after successful registration
+          this.router.navigate(['/login']);
+        })
+      );
+  }
+
 }

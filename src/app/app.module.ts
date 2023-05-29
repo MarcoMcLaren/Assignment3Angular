@@ -13,6 +13,7 @@ import { SidemenuComponent } from './sidemenu/sidemenu.component';
 
 //Login
 import { ReactiveFormsModule } from '@angular/forms';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     LoginComponent,
     ProductListingComponent,
     AddProductComponent,
-    SidemenuComponent
+    SidemenuComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
