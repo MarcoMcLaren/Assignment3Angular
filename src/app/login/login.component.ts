@@ -16,7 +16,7 @@ import { User } from '../Models/user';
 export class LoginComponent {
    
   loginForm = this.fb.group({
-    username: ['', Validators.required],
+    username: ['', [Validators.required, Validators.email]],
     password: ['', Validators.required]
   });
 

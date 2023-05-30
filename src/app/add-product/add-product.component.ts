@@ -19,18 +19,20 @@ export class AddProductComponent {
     productTypeName: '',
 
   };
+  
+ 
 
   // Dummy data
   brands = [
-    { id: 1, name: 'Brand 1' },
-    { id: 2, name: 'Brand 2' },
-    { id: 3, name: 'Brand 3' }
+    { id: 1, name: 'Addidas' },
+    { id: 2, name: 'Nike' },
+    { id: 3, name: 'Under Armour' }
   ];
 
   productTypes = [
-    { id: 1, name: 'Type 1' },
-    { id: 2, name: 'Type 2' },
-    { id: 3, name: 'Type 3' }
+    { id: 1, name: 'Footwear' },
+    { id: 2, name: 'Shirt' },
+    { id: 3, name: 'Pants' }
   ];
 
   constructor(private productService: ProductService, private router: Router) {}

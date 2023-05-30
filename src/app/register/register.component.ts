@@ -10,18 +10,26 @@ import { Router } from '@angular/router';
 })
 export class RegisterComponent {
   
-  registerForm: FormGroup = this.fb.group({
-    username: ['', Validators.required],
-    password: ['', Validators.required]
+   
+  registerForm = this.formBuilder.group({
+    username: ['', [Validators.required, Validators.email]],
+    password: ['', [Validators.required, Validators.minLength(6)]],
   });
 
-  constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) { }
+  constructor(
+    private formBuilder: FormBuilder, 
+    private authService: AuthService, 
+    private router: Router
+  ) { }
 
   ngOnInit(): void { }
 
   onSubmit(): void {
     if (this.registerForm.valid) {
-      this.authService.register(this.registerForm.value).subscribe(user => {
+      this.authService.register({
+        username: this.registerForm.controls.username.value!,
+        password: this.registerForm.controls.password.value!
+      }).subscribe(user => {
         window.alert('Registered successfully.');
         this.router.navigate(['/login']);
       }, error => {
